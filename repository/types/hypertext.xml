@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Standard</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.116.8389</Version>
+    <Version>1.119.8389</Version>
     <InterfaceType>1</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>htmlcontainer, dialog, container, tablecell, form, password, dialog_2, vdomclass, flexcontainer</Containers>
@@ -222,14 +222,14 @@
       <Sentence ID="409">Hidden</Sentence>
       <Sentence ID="411">Scroll</Sentence>
       <Sentence ID="412">Visible</Sentence>
-      <Sentence ID="501"></Sentence>
+      <Sentence ID="501">Hide the object</Sentence>
       <Sentence ID="502">Hide the object</Sentence>
-      <Sentence ID="503">Show the object</Sentence>
+      <Sentence ID="503">Move the object to a new position</Sentence>
       <Sentence ID="504"></Sentence>
-      <Sentence ID="505">Move the object to a new position</Sentence>
-      <Sentence ID="506">Hide the object</Sentence>
-      <Sentence ID="507">Set code attribute in HTML format</Sentence>
-      <Sentence ID="508"></Sentence>
+      <Sentence ID="505"></Sentence>
+      <Sentence ID="506">Set code attribute in HTML format</Sentence>
+      <Sentence ID="507">Show the object</Sentence>
+      <Sentence ID="508">Toggle CSS class</Sentence>
       <Sentence ID="509"></Sentence>
       <Sentence ID="511"></Sentence>
       <Sentence ID="512"></Sentence>
@@ -238,37 +238,37 @@
       <Sentence ID="515"></Sentence>
       <Sentence ID="516"></Sentence>
       <Sentence ID="517"></Sentence>
-      <Sentence ID="518">Toggle CSS class</Sentence>
-      <Sentence ID="601"></Sentence>
+      <Sentence ID="518"></Sentence>
+      <Sentence ID="601">Visibility</Sentence>
       <Sentence ID="602">Visibility</Sentence>
       <Sentence ID="603">Visibility</Sentence>
       <Sentence ID="604"></Sentence>
-      <Sentence ID="605">Visibility</Sentence>
+      <Sentence ID="605"></Sentence>
       <Sentence ID="606">Visibility</Sentence>
       <Sentence ID="607">Visibility</Sentence>
       <Sentence ID="608">toggleClass</Sentence>
-      <Sentence ID="701"></Sentence>
-      <Sentence ID="702"></Sentence>
+      <Sentence ID="701">Incorrect value</Sentence>
+      <Sentence ID="702">Incorrect value</Sentence>
       <Sentence ID="703">Incorrect value</Sentence>
       <Sentence ID="704">Incorrect value</Sentence>
       <Sentence ID="705">Incorrect value</Sentence>
       <Sentence ID="706">Incorrect value</Sentence>
-      <Sentence ID="707">Incorrect value</Sentence>
-      <Sentence ID="708">Incorrect value</Sentence>
+      <Sentence ID="707"></Sentence>
+      <Sentence ID="708"></Sentence>
       <Sentence ID="709">Incorrect value</Sentence>
       <Sentence ID="711">Incorrect value</Sentence>
-      <Sentence ID="712">Name of CSS class</Sentence>
-      <Sentence ID="801"></Sentence>
-      <Sentence ID="802"></Sentence>
-      <Sentence ID="803">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="804">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="805">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="806">X-coordinate of the new position relative to the left upper corner of the container</Sentence>
-      <Sentence ID="807">Y-coordinate of the new position relative to the left upper corner of the container</Sentence>
-      <Sentence ID="808">Visual effect of moving, time is indicated in milliseconds</Sentence>
-      <Sentence ID="809">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="811">Code in HTML format</Sentence>
-      <Sentence ID="812">className</Sentence>
+      <Sentence ID="712">className</Sentence>
+      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="803">X-coordinate of the new position relative to the left upper corner of the container</Sentence>
+      <Sentence ID="804">Y-coordinate of the new position relative to the left upper corner of the container</Sentence>
+      <Sentence ID="805">Visual effect of moving, time is indicated in milliseconds</Sentence>
+      <Sentence ID="806">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="807"></Sentence>
+      <Sentence ID="808"></Sentence>
+      <Sentence ID="809">Code in HTML format</Sentence>
+      <Sentence ID="811">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="812">Name of CSS class</Sentence>
       <Sentence ID="901">Left</Sentence>
       <Sentence ID="902">Left</Sentence>
       <Sentence ID="903">Left</Sentence>
@@ -338,14 +338,14 @@
       <Sentence ID="409">Hidden</Sentence>
       <Sentence ID="411">Scroll</Sentence>
       <Sentence ID="412">Visible</Sentence>
-      <Sentence ID="501"></Sentence>
+      <Sentence ID="501">Visibilité</Sentence>
       <Sentence ID="502">Visibilité</Sentence>
-      <Sentence ID="503">Show the object</Sentence>
+      <Sentence ID="503">Move the object to a new position</Sentence>
       <Sentence ID="504"></Sentence>
-      <Sentence ID="505">Move the object to a new position</Sentence>
-      <Sentence ID="506">Visibilité</Sentence>
-      <Sentence ID="507">Set code attribute in HTML format</Sentence>
-      <Sentence ID="508"></Sentence>
+      <Sentence ID="505"></Sentence>
+      <Sentence ID="506">Set code attribute in HTML format</Sentence>
+      <Sentence ID="507">Show the object</Sentence>
+      <Sentence ID="508">Toggle CSS class</Sentence>
       <Sentence ID="509"></Sentence>
       <Sentence ID="511"></Sentence>
       <Sentence ID="512"></Sentence>
@@ -354,37 +354,37 @@
       <Sentence ID="515"></Sentence>
       <Sentence ID="516"></Sentence>
       <Sentence ID="517"></Sentence>
-      <Sentence ID="518">Toggle CSS class</Sentence>
-      <Sentence ID="601"></Sentence>
+      <Sentence ID="518"></Sentence>
+      <Sentence ID="601">Visibilité</Sentence>
       <Sentence ID="602">Visibilité</Sentence>
       <Sentence ID="603">Visibilité</Sentence>
       <Sentence ID="604"></Sentence>
-      <Sentence ID="605">Visibilité</Sentence>
+      <Sentence ID="605"></Sentence>
       <Sentence ID="606">Visibilité</Sentence>
       <Sentence ID="607">Visibilité</Sentence>
       <Sentence ID="608">toggleClass</Sentence>
-      <Sentence ID="701"></Sentence>
-      <Sentence ID="702"></Sentence>
+      <Sentence ID="701">Valeur Incorrecte</Sentence>
+      <Sentence ID="702">Valeur Incorrecte</Sentence>
       <Sentence ID="703">Valeur Incorrecte</Sentence>
       <Sentence ID="704">Valeur Incorrecte</Sentence>
       <Sentence ID="705">Valeur Incorrecte</Sentence>
       <Sentence ID="706">Valeur Incorrecte</Sentence>
-      <Sentence ID="707">Valeur Incorrecte</Sentence>
-      <Sentence ID="708">Valeur Incorrecte</Sentence>
-      <Sentence ID="709">Valeur Incorrecte</Sentence>
-      <Sentence ID="711">Incorrect value</Sentence>
-      <Sentence ID="712">Name of CSS class</Sentence>
-      <Sentence ID="801"></Sentence>
-      <Sentence ID="802"></Sentence>
-      <Sentence ID="803">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="804">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="805">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="806">X-coordinate of the new position relative to the left upper corner of the container</Sentence>
-      <Sentence ID="807">Y-coordinate of the new position relative to the left upper corner of the container</Sentence>
-      <Sentence ID="808">Visual effect of moving, time is indicated in milliseconds</Sentence>
-      <Sentence ID="809">Fade effect, time is indicated in milliseconds</Sentence>
-      <Sentence ID="811">Code in HTML format</Sentence>
-      <Sentence ID="812">className</Sentence>
+      <Sentence ID="707"></Sentence>
+      <Sentence ID="708"></Sentence>
+      <Sentence ID="709">Incorrect value</Sentence>
+      <Sentence ID="711">Valeur Incorrecte</Sentence>
+      <Sentence ID="712">className</Sentence>
+      <Sentence ID="801">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="802">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="803">X-coordinate of the new position relative to the left upper corner of the container</Sentence>
+      <Sentence ID="804">Y-coordinate of the new position relative to the left upper corner of the container</Sentence>
+      <Sentence ID="805">Visual effect of moving, time is indicated in milliseconds</Sentence>
+      <Sentence ID="806">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="807"></Sentence>
+      <Sentence ID="808"></Sentence>
+      <Sentence ID="809">Code in HTML format</Sentence>
+      <Sentence ID="811">Fade effect, time is indicated in milliseconds</Sentence>
+      <Sentence ID="812">Name of CSS class</Sentence>
       <Sentence ID="901">Gauche</Sentence>
       <Sentence ID="902">Gauche</Sentence>
       <Sentence ID="903">Gauche</Sentence>
@@ -454,14 +454,14 @@
       <Sentence ID="409">Скрытый</Sentence>
       <Sentence ID="411">Прокрутка</Sentence>
       <Sentence ID="412">Отображать</Sentence>
-      <Sentence ID="501"></Sentence>
+      <Sentence ID="501">Скрыть объект</Sentence>
       <Sentence ID="502">Скрыть объект</Sentence>
-      <Sentence ID="503">Показать объект</Sentence>
+      <Sentence ID="503">Переместить объект</Sentence>
       <Sentence ID="504"></Sentence>
-      <Sentence ID="505">Переместить объект</Sentence>
-      <Sentence ID="506">Скрыть объект</Sentence>
-      <Sentence ID="507">Установить код в формате HTML</Sentence>
-      <Sentence ID="508"></Sentence>
+      <Sentence ID="505"></Sentence>
+      <Sentence ID="506">Установить код в формате HTML</Sentence>
+      <Sentence ID="507">Показать объект</Sentence>
+      <Sentence ID="508">Toggle CSS class</Sentence>
       <Sentence ID="509"></Sentence>
       <Sentence ID="511"></Sentence>
       <Sentence ID="512"></Sentence>
@@ -470,37 +470,37 @@
       <Sentence ID="515"></Sentence>
       <Sentence ID="516"></Sentence>
       <Sentence ID="517"></Sentence>
-      <Sentence ID="518">Toggle CSS class</Sentence>
-      <Sentence ID="601"></Sentence>
+      <Sentence ID="518"></Sentence>
+      <Sentence ID="601">Отображение</Sentence>
       <Sentence ID="602">Отображение</Sentence>
       <Sentence ID="603">Отображение</Sentence>
       <Sentence ID="604"></Sentence>
-      <Sentence ID="605">Отображение</Sentence>
+      <Sentence ID="605"></Sentence>
       <Sentence ID="606">Отображение</Sentence>
       <Sentence ID="607">Отображение</Sentence>
       <Sentence ID="608">toggleClass</Sentence>
-      <Sentence ID="701"></Sentence>
-      <Sentence ID="702"></Sentence>
+      <Sentence ID="701">Неправильное значение</Sentence>
+      <Sentence ID="702">Неправильное значение</Sentence>
       <Sentence ID="703">Неправильное значение</Sentence>
       <Sentence ID="704">Неправильное значение</Sentence>
       <Sentence ID="705">Неправильное значение</Sentence>
       <Sentence ID="706">Неправильное значение</Sentence>
-      <Sentence ID="707">Неправильное значение</Sentence>
-      <Sentence ID="708">Неправильное значение</Sentence>
+      <Sentence ID="707"></Sentence>
+      <Sentence ID="708"></Sentence>
       <Sentence ID="709">Неправильное значение</Sentence>
       <Sentence ID="711">Неправильное значение</Sentence>
-      <Sentence ID="712">Name of CSS class</Sentence>
-      <Sentence ID="801"></Sentence>
-      <Sentence ID="802"></Sentence>
-      <Sentence ID="803">Время исчезновения в миллисекундах</Sentence>
-      <Sentence ID="804">Время исчезновения в миллисекундах</Sentence>
-      <Sentence ID="805">Время исчезновения в миллисекундах</Sentence>
-      <Sentence ID="806">Координата новой точки по оси X</Sentence>
-      <Sentence ID="807">Координата новой точки по оси Y</Sentence>
-      <Sentence ID="808">Визуальный эффект при перетаскивании</Sentence>
-      <Sentence ID="809">Время исчезновения в миллисекундах</Sentence>
-      <Sentence ID="811">Код в формате HTML</Sentence>
-      <Sentence ID="812">className</Sentence>
+      <Sentence ID="712">className</Sentence>
+      <Sentence ID="801">Время исчезновения в миллисекундах</Sentence>
+      <Sentence ID="802">Время исчезновения в миллисекундах</Sentence>
+      <Sentence ID="803">Координата новой точки по оси X</Sentence>
+      <Sentence ID="804">Координата новой точки по оси Y</Sentence>
+      <Sentence ID="805">Визуальный эффект при перетаскивании</Sentence>
+      <Sentence ID="806">Время исчезновения в миллисекундах</Sentence>
+      <Sentence ID="807"></Sentence>
+      <Sentence ID="808"></Sentence>
+      <Sentence ID="809">Код в формате HTML</Sentence>
+      <Sentence ID="811">Время исчезновения в миллисекундах</Sentence>
+      <Sentence ID="812">Name of CSS class</Sentence>
       <Sentence ID="901">Слева</Sentence>
       <Sentence ID="902">Слева</Sentence>
       <Sentence ID="903">Слева</Sentence>
@@ -666,47 +666,14 @@
 			F1749tkPPPTZxx/fODmWMq8WCDXzB/f9arltao1Pfo9eqn9YduddL6dSkV4exO7du+3N18LC6U39
 			938EGADbezyFwLdvGwAAAABJRU5ErkJggg==]]></Resource>
   </Resources>
-  <SourceCode><![CDATA[
-import re
-
+  <SourceCode><![CDATA[import re
+from html_utils import HyperTextFactory
 
 class VDOM_hypertext(VDOM_object):
 
     def render(self, contents=""):
-        id = 'o_' + (self.id).replace('-', '_')
-
-        display = u"display:none;" if self.visible == "0" else u"display:block;"
-
-        if self.nostyle == "2":
-            if self.visible == "0":
-                return "<span style=\"%s\">%s</span>" % (display, self.htmlcode)
-            else:
-                return "%s" % (self.htmlcode)
-        elif self.nostyle == "1":
-            return "<span id=\"%s\" style=\"%s\">%s</span>" % (id, display, self.htmlcode)
-        else:
-            if self.overflow == "1":
-                ov = 'hidden'
-            elif self.overflow == "2":
-                ov = 'scroll'
-            elif self.overflow == "3":
-                ov = 'visible'
-            else:
-                ov = 'auto'
-
-            height = u"height: "+self.height+"px;" if int(u"0%s" % self.height) > 0 else u""
-
-            style = u"overflow:"+ov+"; position: absolute; z-index: "+self.zindex+"; top: "+self.top+"px; left: "+self.left+"px; width: "+self.width+"px; "+height
-
-            classname = u'class="%s"' % self.classname if self.classname else u""
-
-            if VDOM_CONFIG_1["DEBUG"] == "1":
-                debug_info = u"objtype='hypertext' objname='%s' ver='%s'" % (self.name, self.type.version)
-            else:
-                debug_info = u""
-
-            return "<div %s id=\"%s\" %s style=\"%s%s\">%s</div>" % (debug_info, id, classname, style, display, self.htmlcode)
-
+        factory = HyperTextFactory(self)
+        return VDOM_object.render(self, contents=factory.create())
 
     def wysiwyg(self, contents=""):
         from scripting.legacy.wysiwyg import get_empty_wysiwyg_value
@@ -753,58 +720,60 @@ class VDOM_hypertext(VDOM_object):
 
     
 ]]></SourceCode>
-  <Libraries/>
+  <Libraries>
+    <Library Target="html"><![CDATA[ <script src="https://unpkg.com/jss@10.7.1/dist/jss.min.js"></script>]]></Library>
+  </Libraries>
   <E2vdom>
     <Events>
       <Userinterfaceevents>
-        <Event Name="mouseup" Help="#Lang(508)">
+        <Event Name="mouseup" Help="#Lang(509)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(901)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(902)"/>
           </Parameters>
         </Event>
-        <Event Name="mousemove" Help="#Lang(509)">
+        <Event Name="mousemove" Help="#Lang(511)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(903)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(904)"/>
           </Parameters>
         </Event>
-        <Event Name="mousedown" Help="#Lang(511)">
+        <Event Name="mousedown" Help="#Lang(512)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(905)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(906)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseout" Help="#Lang(512)">
+        <Event Name="mouseout" Help="#Lang(513)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(907)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(908)"/>
           </Parameters>
         </Event>
-        <Event Name="ctrlclick" Help="#Lang(513)">
+        <Event Name="ctrlclick" Help="#Lang(514)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(909)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(911)"/>
           </Parameters>
         </Event>
-        <Event Name="mouseover" Help="#Lang(514)">
+        <Event Name="mouseover" Help="#Lang(515)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(912)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(913)"/>
           </Parameters>
         </Event>
-        <Event Name="custom" Help="#Lang(515)">
+        <Event Name="custom" Help="#Lang(516)">
           <Parameters>
             <Parameter Name="Parameters" Order="0" VbType="" Help="#Lang(914)"/>
           </Parameters>
         </Event>
-        <Event Name="click" Help="#Lang(516)">
+        <Event Name="click" Help="#Lang(517)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(915)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(916)"/>
           </Parameters>
         </Event>
-        <Event Name="dblclick" Help="#Lang(517)">
+        <Event Name="dblclick" Help="#Lang(518)">
           <Parameters>
             <Parameter Name="X" Order="0" VbType="" Help="#Lang(917)"/>
             <Parameter Name="Y" Order="0" VbType="" Help="#Lang(918)"/>
@@ -814,55 +783,55 @@ class VDOM_hypertext(VDOM_object):
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="addHTML">
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="addHTML">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(709)" ScriptName="value" Help="#Lang(809)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(701)" ScriptName="value" Help="#Lang(801)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[$j(this.domCont).append(value);]]></SourceCode>
         </Action>
         <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="hide">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="fade" Help="#Lang(803)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[vdom_ui_hide(this.domCont, fade);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="moveTo">
+        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="moveTo">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(706)" ScriptName="newX" Help="#Lang(806)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(707)" ScriptName="newY" Help="#Lang(807)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(708)" ScriptName="Effect" Help="#Lang(808)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(703)" ScriptName="newX" Help="#Lang(803)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="newY" Help="#Lang(804)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="Effect" Help="#Lang(805)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[vdom_ui_moveTo(this.domCont, newX, newY, Effect);]]></SourceCode>
         </Action>
         <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="moveZindexTo">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(705)" ScriptName="newZindex" Help="#Lang(805)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(706)" ScriptName="newZindex" Help="#Lang(806)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[this.domCont.style.zindex = parseInt(newZindex,10);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="resizeTo">
+        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="resizeTo">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="width" Help="#Lang(801)" RegularExpressionValidation=".*"/>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="height" Help="#Lang(802)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(707)" ScriptName="width" Help="#Lang(807)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(708)" ScriptName="height" Help="#Lang(808)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[$q(this.domCont).width(parseInt(width,10)).height(parseInt(height,10));]]></SourceCode>
         </Action>
-        <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="setHTML">
+        <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="setHTML">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(711)" ScriptName="HTML" Help="#Lang(811)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(709)" ScriptName="HTML" Help="#Lang(809)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[/*this.domCont.innerHTML=HTML;*/
 jQuery(this.domCont).html(HTML);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="show">
+        <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="show">
           <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(704)" ScriptName="fade" Help="#Lang(804)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(711)" ScriptName="fade" Help="#Lang(811)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[vdom_ui_show(this.domCont, fade);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(518)" InterfaceName="#Lang(608)" MethodName="toggleClass">
+        <Action Help="#Lang(508)" InterfaceName="#Lang(608)" MethodName="toggleClass">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(812)" ScriptName="className" Help="#Lang(712)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(712)" ScriptName="className" Help="#Lang(812)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[$q(this.domCont).toggleClass(className);]]></SourceCode>
         </Action>
