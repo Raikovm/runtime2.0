@@ -663,9 +663,42 @@
 class VDOM_formtextarea(VDOM_object):
 
 	def render(self, contents=""):
-        factory = TextFactory(self)
-        return VDOM_object.render(self, contents=factory.create.render())
-        
+		display = u"display:none;" if self.visible == "0" else u""
+		clean_id = (self.id).replace('-', '_')
+		id = u"o_" + (self.id).replace('-', '_')
+		required = 'required' if self.required=='1' else u''
+		
+		style = u"""z-index: {zind}; position: {pos}; top: {top}px; left: {left}px;
+					width: {width}px; height: {height}px; padding: 2px 5px 2px 5px; {display} font: 14px tahoma
+				""".format(zind = self.zindex, pos = self.position, top = self.top, left = self.left, 
+						width = self.width, height = self.height, display = display)
+
+		result = u"""
+			<textarea {required} id="{id}" name="{name}" 
+				tabindex="{tabind}" style="{style}"
+			>{value}</textarea>
+		""".format(
+			id=id, name=self.customname or self.name, 
+			tabind=self.tabindex, style=style, 
+			value=self.value, required=required
+		)
+		
+		focused = u"$q('#%s').focus();" % id if self.focused == "1" else ""
+				
+		result += u"""<script type='text/javascript'>
+$(document).ready(function(){
+	$('#%(id)s').blur(function(){
+		var x = $.trim($(this).val());
+		execEventBinded("%(clean_id)s", "blur", { itemValue: x, charCount: x.length });
+	});
+	$('#%(id)s').focusin(function(){
+		execEventBinded("%(clean_id)s", "focus", {});
+	});
+	%(focused)s
+});</script>""" % { "id": id, "clean_id": clean_id, "focused": focused }
+
+		return VDOM_object.render(self, contents=result)
+
 	def wysiwyg(self, contents=""):
 		
 		result = \

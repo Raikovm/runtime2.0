@@ -703,8 +703,37 @@ Submit - send the from data using the request method selected in the Method attr
 <![CDATA[class VDOM_formbutton(VDOM_object):
 
 	def render(self, contents=""):
-        factory = TextFactory(self)
-        return VDOM_object.render(self, contents=factory.create.render())
+		display = u"display:none;" if self.visible == "0" else u""
+		type = ["submit", "reset", "button"][int(self.attributes["type"])]
+		if self.classname == "":
+			 clname = ""
+		else:
+			 clname = "class='%s'" % (self.classname).replace("'", "")
+		style = \
+			u"{disp} z-index:{zind}; position:{pos}; top:{top}px; left:{left}px; width:{wid}px; height:{hei}px; font:12px tahoma" \
+			.format(disp = display, zind = self.zindex, pos = self.position, 
+					top = self.top, left = self.left, wid = self.width, hei = self.height)
+		id = u"o_" + (self.id).replace('-', '_')
+
+		if VDOM_CONFIG_1["DEBUG"] == "1":
+			debug_info = u"objtype='formbutton' objname='%s'" % ( (self.name).replace("'", "") )
+		else:
+			debug_info = u""
+
+		result = u"""<style type="text/css">{css}</style>
+<input {debug_info} id="{id}" name="{name}" style="{style}" type="{type}" tabindex="{tabind}" value="{label}" {clname} />
+			""".format(
+					debug_info = debug_info,
+					css = self.style % {"id": id},
+					id = id,
+					name = self.name,
+					style = style,
+					type = type,
+					tabind = self.tabindex,
+					label = self.label,
+					clname = clname)
+			
+		return VDOM_object.render(self, contents=result)
 
 	def wysiwyg(self, contents=""):
 		label = u"<![CDATA[%s%s]>" % (self.label, "]")
