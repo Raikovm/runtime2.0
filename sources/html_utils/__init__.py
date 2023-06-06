@@ -3,3 +3,4 @@ from text_factory import TextFactory
 from hypertext_factory import HyperTextFactory
 from richtext_factory import RichTextFactory
 from container_factory import ContainerFactory
+from formbutton_factory import FormButtonFactory

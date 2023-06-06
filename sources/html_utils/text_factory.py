@@ -5,27 +5,26 @@ class TextFactory(ComponentFactoryBase):
         self.object = VDOM_text
 
     def create(self):
+        print(test)
         builder = HtmlBuilder()
 
-        self._set_position(builder, self.top, self.left)
-        self._set_visibility(builder, self.visible == '0')
-        self._set_zindex(builder, self.zindex)
-        self._set_size(builder, self.width, None)
-        self._set_font(builder, self.fontsize, self.fontfamily, self.fontweight == 'bold', self.fontstyle == 'italic')
+        self._set_position(builder, self.object.top, self.object.left)
+        self._set_visibility(builder, self.object.visible == '0')
+        self._set_zindex(builder, self.object.zindex)
+        self._set_size(builder, self.object.width, None)
+        self._set_font(builder, self.object.fontsize, self.object.fontfamily, self.object.fontweight == 'bold', self.object.fontstyle == 'italic')
         
-        builder.with_tag(self.htmltag)
-        builder.add_css('%s' % self.css if self.css else "")
+        builder.with_tag(self.object.htmltag)
+        builder.add_css('%s' % self.object.css if self.object.css else "")
 
-        builder
-            .add_style('overflow', 'auto')
-            .add_style('text-align', self.align)
-            .add_style('color', '#%s' % self.color if self.color else None)
-            .add_style('text-decoration', self.textdecoration)
-        builder
-            .with_class_name(self.classname)
-            .add_attribute('title', self.hint.replace('"', '&quot;'))
-            .add_attribute('id', self.id_special)
-        builder.add_attribute('debug_info', debug_info)
+        builder.add_style('overflow', 'auto')
+        builder.add_style('text-align', self.object.align)
+        builder.add_style('color', '#%s' % self.object.color if self.object.color else None)
+        builder.add_style('text-decoration', self.object.textdecoration)
+        builder.with_class_name(self.object.classname)
+        builder.add_attribute('title', self.object.hint.replace('"', '&quot;'))
+        builder.add_attribute('id', self.object.id_special)
+        builder.add_attribute('debug_info', self.object.debug_info)
 
         return builder.build().render()
         

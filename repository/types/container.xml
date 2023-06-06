@@ -1048,10 +1048,7 @@ class VDOM_container(VDOM_object):
 
     def render(self, contents=""):
         factory = ContainerFactory(self)
-        return VDOM_object.render(self, contents=factory.create())
-
-
-
+        return VDOM_object.render(self, contents=factory.create().render())
 
     def wysiwyg(self, contents=""):
         from scripting.legacy.wysiwyg import get_centered_image_metrics

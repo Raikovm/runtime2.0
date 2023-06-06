@@ -2,8 +2,8 @@ class ComponentFactoryBase(object):
     def create(self):
         raise NotImplementedError("Derived classes must implement create() method.")
 
-
     def _set_position(self, builder, top, left):
+        builder.add_style("position", "absolute")
         builder.add_style("top", "%spx" % top)
         builder.add_style("left", "%spx" % left)
 
@@ -27,10 +27,10 @@ class ComponentFactoryBase(object):
     def _set_font(self, builder, size, family, is_bold, is_italic):
         font = [
                 "%spx" % size or "12px",
-                "\"%s\"" % family or "",                
+                "%s" % family or "",                
                 "bold" if is_bold else "",
                 "italic" if is_italic else ""]
-        builder.add_style.add_style("font", " ".join(font))
+        builder.add_style("font", " ".join(font))
 
 
 
@@ -47,16 +47,17 @@ class HtmlElement(object):
         jss = ", ".join("'{}': '{}'".format(k, v) for k, v in self.jss.items())
         children = "".join(str(child) for child in self.children)
         class_name = self.class_name if self.class_name is not None else self.tag
-        attributes = " ".join("'{}'=\"{}\"".format(k, v) for k, v in self.html_attributes.items())
+        attributes = " ".join("{}=\"{}\"".format(k, v) for k, v in self.html_attributes.items())
         css_merge_script = ("const styleFromCss = '{0}'"
                             "styles = jss.default.merge(styleFromCss, styles)").format(self.css) if self.css is not None else ""
         jss_script = ("<script>"
-                      "(function() {{"
-                      "let styles = {{{0} : {1}}};"
+                      "{{"
+                      "let styles = {{{0} : {{{1}}}}};"
                       "{2}" 
-                      "const sheet = jss.default.createStyleSheet(styles);"
-                      "sheet.attach();"
-                      "}})();"
+                      "let sheet = jss.default.createStyleSheet(styles).attach();"
+                      "let element = document.currentScript.parentElement;"
+                      "element.classList.add(sheet.classes.{0});"
+                      "}};"
                       "</script>").format(self.class_name, jss, css_merge_script)
         return "<{0} class=\"{1}\" {2}>{3}{4}</{0}>".format(self.tag, class_name, attributes, jss_script, children)
 
@@ -67,7 +68,7 @@ class HtmlElement(object):
 
 class HtmlBuilder(object):
     def __init__(self):
-        self._element = HtmlElement(None, {}, None, [], None)
+        self._element = HtmlElement(None, {}, None, [], None, {})
 
 
     def add_style(self, style, value):
@@ -97,29 +98,12 @@ class HtmlBuilder(object):
         self._element.css = text
         return self
 
-    def add_attribute(self, attribute, value)
+    def add_attribute(self, attribute, value):
         if value is not None:
-            self._element.html_attributes[style] = value
-        elif style in html_attributes: 
-            del html_attributes[style]
+            self._element.html_attributes[attribute] = value 
+        elif attribute in self._element.html_attributes: 
+            del self._element.html_attributes[attribute] 
         return self
-
 
     def build(self):
         return self._element
-
-def main():
-
-    child_builder = HtmlBuilder()
-    child_element = (child_builder.add_style('color', 'blue')
-                   .with_tag('p')
-                   .add_children_element("LOL")
-                   .build())
-    builder = HtmlBuilder()
-    html_element = (builder.add_style('color', 'red')
-                   .add_style('fontSize', '20px')
-                   .with_tag('div')
-                   .add_children_element('This is the parent element')
-                   .add_children_element(child_element)
-                   .build())
-    print(html_element)

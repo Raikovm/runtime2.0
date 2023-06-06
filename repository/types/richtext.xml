@@ -763,7 +763,7 @@ class VDOM_richtext(VDOM_object):
 
     def render(self, contents=""):    	
     	factory = RichTextFactory(self)
-        return VDOM_object.render(self, contents=factory.create.create())
+        return VDOM_object.render(self, contents=factory.create().create())
 
 
     def wysiwyg(self, contents=""):

@@ -1013,7 +1013,7 @@ All changes of attributes are applied to the whole text. You cannot change the s
 class VDOM_text(VDOM_object):
     def render(self, contents=""):
         factory = TextFactory(self)
-        return VDOM_object.render(self, contents=factory.create.render())
+        return VDOM_object.render(self, contents=factory.create().render())
 
     def wysiwyg(self, contents=""):
         the_value = self.value
