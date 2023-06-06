@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>JSS Example</title>
+    <script src="https://unpkg.com/jss@10.7.1/dist/jss.min.js"></script>
+  </head>
+  <body>
+    <div>
+      <p
+        class="mytext"
+        id="text-id"
+        debug_info="debug info"
+        title="This is a hint"
+      >
+        <script>
+          {
+            let styles = {
+              mytext: {
+                "text-align": "center",
+                top: "10px",
+                height: "100px",
+                width: "100px",
+                "z-index": "1",
+                "text-decoration": "underline",
+                position: "absolute",
+                overflow: "auto",
+                font: "16px Arial bold italic",
+                display: "initial",
+                color: "#000000",
+                left: "10px",
+              },
+            };
+            let sheet = jss.default.createStyleSheet(styles).attach();
+            let element = document.currentScript.parentElement;
+            element.classList.add(sheet.classes.mytext);
+          }
+        </script>
+        TEXT
+      </p>
+
+      <div class="richtext" id="o_id">
+        <script>
+          {
+            let styles = {
+              richtext: {
+                font: "Arial",
+                color: "#000000",
+                top: "10px",
+                height: "150px",
+                width: "150px",
+                "z-index": "1",
+                "text-decoration": "underline",
+                position: "absolute",
+                overflow: "scroll",
+                "text-align": "left",
+                display: "initial",
+                left: "100px",
+              },
+            };
+            let sheet = jss.default.createStyleSheet(styles).attach();
+            let element = document.currentScript.parentElement;
+            element.classList.add(sheet.classes.richtext);
+          }
+        </script>
+        This is a rich text
+      </div>
+
+      <div class="container" id="o_id_1">
+        <script>
+          {
+            let styles = {
+              container: {
+                "background-repeat": "no-repeat",
+                top: "200px",
+                "z-index": "1",
+                position: "absolute",
+                overflow: "hidden",
+                display: "initial",
+                "background-color": "#FFFFFF",
+                left: "10px",
+              },
+            };
+            let sheet = jss.default.createStyleSheet(styles).attach();
+            let element = document.currentScript.parentElement;
+            element.classList.add(sheet.classes.container);
+          }
+        </script>
+        <div class="title">
+          <script>
+            {
+              let styles = { title: {} };
+              let sheet = jss.default.createStyleSheet(styles).attach();
+              let element = document.currentScript.parentElement;
+              element.classList.add(sheet.classes.title);
+            }
+          </script>
+          <div class="div">
+            <script>
+              {
+                let styles = { None: {} };
+                let sheet = jss.default.createStyleSheet(styles).attach();
+                let element = document.currentScript.parentElement;
+                element.classList.add(sheet.classes.None);
+              }
+            </script>
+            <h1 class="h1">
+              <script>
+                {
+                  let styles = { None: {} };
+                  let sheet = jss.default.createStyleSheet(styles).attach();
+                  let element = document.currentScript.parentElement;
+                  element.classList.add(sheet.classes.None);
+                }
+              </script>
+              Container Title
+            </h1>
+          </div>
+        </div>
+        <div class="content">
+          <script>
+            {
+              let styles = { content: {} };
+              let sheet = jss.default.createStyleSheet(styles).attach();
+              let element = document.currentScript.parentElement;
+              element.classList.add(sheet.classes.content);
+            }
+          </script>
+          <p>Container contents</p>
+        </div>
+      </div>
+
+      <div class="hypertext" id="o_id_1">
+        <script>
+          {
+            let styles = {
+              hypertext: {
+                top: "10px",
+                height: "50px",
+                width: "100px",
+                "z-index": "1",
+                position: "absolute",
+                overflow: "hidden",
+                display: "initial",
+                left: "300px",
+              },
+            };
+            let sheet = jss.default.createStyleSheet(styles).attach();
+            let element = document.currentScript.parentElement;
+            element.classList.add(sheet.classes.hypertext);
+          }
+        </script>
+        <a href="#">This is an html code</a>
+      </div>
+
+      <form>
+        <input class="formbutton" name="submitbutton" type="submit" id="button1" value="Submit" tabindex="1">
+        <script>
+        {
+          let styles = {
+            formbutton : {
+              'top': '10px', 
+              'height': '30px', 
+              'width': '100px', 
+              'z-index': '1', 
+              'position': 'absolute', 
+              'display': 'initial', 
+              'left': '410px'
+            }
+          };
+          let sheet = jss.default.createStyleSheet(styles).attach();
+          let element = document.currentScript.parentElement;element.classList.add(sheet.classes.formbutton);
+        };
+        </script>
+      </input>
+      </form>
+    </div>
+  </body>
+</html>
