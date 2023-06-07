@@ -1008,12 +1008,144 @@ All changes of attributes are applied to the whole text. You cannot change the s
 			jGAamKSNgdQZEPv9j38Mb77/Y+BhY2SQ5GauAKaBTmTNIL0YBkABHxCbY7HwNjRZYxpALgAIMACo
 			wWDHgtQQdgAAAABJRU5ErkJggg==]]></Resource>
   </Resources>
-  <SourceCode><![CDATA[from html_utils import TextFactory
+  <SourceCode><![CDATA[class ComponentFactoryBase(object):
+    def create(self):
+        raise NotImplementedError("Derived classes must implement create() method.")
+
+    def _set_position(self, builder, top, left):
+        builder.add_style("position", "absolute")
+        builder.add_style("top", "%spx" % top)
+        builder.add_style("left", "%spx" % left)
+
+
+    def _set_visibility(self, builder, visibility):
+        if not visibility: 
+            builder.add_style("display", "none")
+        else: 
+            builder.add_style("display", "initial")
+
+
+    def _set_zindex(self, builder, index):
+        builder.add_style("z-index", index)
+
+
+    def _set_size(self, builder, width, height):
+        builder.add_style("width", "%spx" % width)
+        builder.add_style("height", "%spx" % height)
+
+
+    def _set_font(self, builder, size, family, is_bold, is_italic):
+        font = [
+                "%spx" % size or "12px",
+                "%s" % family or "",                
+                "bold" if is_bold else "",
+                "italic" if is_italic else ""]
+        builder.add_style("font", " ".join(font))
+
+class TextFactory(ComponentFactoryBase):
+    def __init__(self, VDOM_text): 
+        self.object = VDOM_text
+
+    def create(self):
+        builder = HtmlBuilder()
+
+        self._set_position(builder, self.object.top, self.object.left)
+        self._set_visibility(builder, self.object.visible == '1')
+        self._set_zindex(builder, self.object.zindex)
+        self._set_size(builder, self.object.width, self.object.height)
+        self._set_font(builder, self.object.fontsize, self.object.fontfamily, self.object.fontweight == 'bold', self.object.fontstyle == 'italic')
+        
+        builder.with_tag(self.object.htmltag)
+        builder.add_css('%s' % self.object.css if self.object.css else None)
+
+        builder.add_style('overflow', 'auto')
+        builder.add_style('text-align', self.object.align)
+        builder.add_style('color', '#%s' % self.object.color if self.object.color else None)
+        builder.add_style('text-decoration', self.object.textdecoration)
+        builder.with_class_name(self.object.classname)
+        builder.add_attribute("title", self.object.hint.replace('"', '&quot;'))
+        builder.add_attribute("id", self.object.id_special)
+
+        builder.add_children_element(self.object.value)
+
+        return builder.build().render()
+
+class HtmlElement(object):
+    def __init__(self, tag, jss, css, children, class_name, html_attributes):
+        self.tag = tag
+        self.jss = jss
+        self.css = css
+        self.children = children
+        self.class_name = class_name
+        self.html_attributes = html_attributes
+
+    def render(self):
+        jss = ", ".join("'{}': '{}'".format(k, v) for k, v in self.jss.items())
+        children = "".join(str(child) for child in self.children)
+        class_name = self.class_name if self.class_name is not None else self.tag
+        attributes = " ".join("{}=\"{}\"".format(k, v) for k, v in self.html_attributes.items())
+        css_merge_script = ("const styleFromCss = '{0}'"
+                            "styles = jss.default.merge(styleFromCss, styles)").format(self.css) if self.css is not None else ""
+        jss_script = ("<script>"
+                      "{{"
+                      "let styles = {{{0} : {{{1}}}}};"
+                      "{2}" 
+                      "let sheet = jss.default.createStyleSheet(styles).attach();"
+                      "let element = document.currentScript.parentElement;"
+                      "element.classList.add(sheet.classes.{0});"
+                      "}};"
+                      "</script>").format(self.class_name, jss, css_merge_script)
+        return "<{0} class=\"{1}\" {2}>{3}{4}</{0}>".format(self.tag, class_name, attributes, jss_script, children)
+
+
+    def __str__(self):
+        return self.render()
+
+class HtmlBuilder(object):
+    def __init__(self):
+        self._element = HtmlElement(None, {}, None, [], None, {})
+
+
+    def add_style(self, style, value):
+        if value is not None:
+            self._element.jss[style] = value
+        return self
+
+
+    def with_tag(self, tag_name):
+        self._element.tag = tag_name
+        return self
+
+
+    def add_children_element(self, child_element):
+        self._element.children.append(child_element)
+        return self
+
+
+    def with_class_name(self, class_name):
+        self._element.class_name = class_name
+        return self
+
+
+    def add_css(self, text):
+        self._element.css = text
+        return self
+
+    def add_attribute(self, attribute, value):
+        if value is not None:
+            self._element.html_attributes[attribute] = value 
+        elif attribute in self._element.html_attributes: 
+            del self._element.html_attributes[attribute] 
+        return self
+
+
+    def build(self):
+        return self._element
 
 class VDOM_text(VDOM_object):
     def render(self, contents=""):
         factory = TextFactory(self)
-        return VDOM_object.render(self, contents=factory.create().render())
+        return VDOM_object.render(self, contents=factory.create())
 
     def wysiwyg(self, contents=""):
         the_value = self.value

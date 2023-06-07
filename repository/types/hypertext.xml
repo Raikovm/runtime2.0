@@ -667,13 +667,148 @@
 			938EGADbezyFwLdvGwAAAABJRU5ErkJggg==]]></Resource>
   </Resources>
   <SourceCode><![CDATA[import re
-from html_utils import HyperTextFactory
+
+class ComponentFactoryBase(object):
+    def create(self):
+        raise NotImplementedError("Derived classes must implement create() method.")
+
+    def _set_position(self, builder, top, left):
+        builder.add_style("position", "absolute")
+        builder.add_style("top", "%spx" % top)
+        builder.add_style("left", "%spx" % left)
+
+
+    def _set_visibility(self, builder, visibility):
+        if not visibility: 
+            builder.add_style("display", "none")
+        else: 
+            builder.add_style("display", "initial")
+
+
+    def _set_zindex(self, builder, index):
+        builder.add_style("z-index", index)
+
+
+    def _set_size(self, builder, width, height):
+        builder.add_style("width", "%spx" % width)
+        builder.add_style("height", "%spx" % height)
+
+
+    def _set_font(self, builder, size, family, is_bold, is_italic):
+        font = [
+                "%spx" % size or "12px",
+                "%s" % family or "",                
+                "bold" if is_bold else "",
+                "italic" if is_italic else ""]
+        builder.add_style("font", " ".join(font))
+
+class HyperTextFactory(ComponentFactoryBase):
+    def __init__(self, VDOM_hypertext): 
+        self.object = VDOM_hypertext
+
+    def create(self):
+        if self.object.nostyle == "2":
+            return self.object.htmlcode
+
+        if self.object.nostyle == "1":
+            return "<span id=\"%s\">%s</span>" % (id, self.object.htmlcode)
+
+        builder = HtmlBuilder()
+        id = 'o_' + (self.object.id).replace('-', '_')
+        builder.with_tag('div' if self.object.nostyle != "1" else 'span')
+        builder.with_class_name(self.object.classname)
+        builder.add_attribute('id', id)
+        self._set_position(builder, self.object.top, self.object.left)
+        self._set_visibility(builder, self.object.visible == '1')
+        self._set_zindex(builder, self.object.zindex)
+        self._set_size(builder, self.object.width, self.object.height if int("0%s" % self.object.height) > 0 else None)
+
+        overflow_settings = {"1": 'hidden', "2": 'scroll', "3": 'visible'}
+        builder.add_style('overflow', overflow_settings.get(self.object.overflow, 'auto'))
+
+        builder.add_children_element(self.object.htmlcode)
+        
+        return builder.build().render()
+
+class HtmlElement(object):
+    def __init__(self, tag, jss, css, children, class_name, html_attributes):
+        self.tag = tag
+        self.jss = jss
+        self.css = css
+        self.children = children
+        self.class_name = class_name
+        self.html_attributes = html_attributes
+
+    def render(self):
+        jss = ", ".join("'{}': '{}'".format(k, v) for k, v in self.jss.items())
+        children = "".join(str(child) for child in self.children)
+        class_name = self.class_name if self.class_name is not None else self.tag
+        attributes = " ".join("{}=\"{}\"".format(k, v) for k, v in self.html_attributes.items())
+        css_merge_script = ("const styleFromCss = '{0}'"
+                            "styles = jss.default.merge(styleFromCss, styles)").format(self.css) if self.css is not None else ""
+        jss_script = ("<script>"
+                      "{{"
+                      "let styles = {{{0} : {{{1}}}}};"
+                      "{2}" 
+                      "let sheet = jss.default.createStyleSheet(styles).attach();"
+                      "let element = document.currentScript.parentElement;"
+                      "element.classList.add(sheet.classes.{0});"
+                      "}};"
+                      "</script>").format(self.class_name, jss, css_merge_script)
+        return "<{0} class=\"{1}\" {2}>{3}{4}</{0}>".format(self.tag, class_name, attributes, jss_script, children)
+
+
+    def __str__(self):
+        return self.render()
+
+class HtmlBuilder(object):
+    def __init__(self):
+        self._element = HtmlElement(None, {}, None, [], None, {})
+
+
+    def add_style(self, style, value):
+        if value is not None:
+            self._element.jss[style] = value
+        return self
+
+
+    def with_tag(self, tag_name):
+        self._element.tag = tag_name
+        return self
+
+
+    def add_children_element(self, child_element):
+        self._element.children.append(child_element)
+        return self
+
+
+    def with_class_name(self, class_name):
+        self._element.class_name = class_name
+        return self
+
+
+    def add_css(self, text):
+        self._element.css = text
+        return self
+
+    def add_attribute(self, attribute, value):
+        if value is not None:
+            self._element.html_attributes[attribute] = value 
+        elif attribute in self._element.html_attributes: 
+            del self._element.html_attributes[attribute] 
+        return self
+
+
+    def build(self):
+        return self._element
+
+
 
 class VDOM_hypertext(VDOM_object):
 
     def render(self, contents=""):
         factory = HyperTextFactory(self)
-        return VDOM_object.render(self, contents=factory.create().render())
+        return VDOM_object.render(self, contents=factory.create())
 
     def wysiwyg(self, contents=""):
         from scripting.legacy.wysiwyg import get_empty_wysiwyg_value
@@ -716,10 +851,7 @@ class VDOM_hypertext(VDOM_object):
                         overflow = overflow,
                         name = self.name)
 
-        return VDOM_object.wysiwyg(self, contents=result)
-
-    
-]]></SourceCode>
+        return VDOM_object.wysiwyg(self, contents=result)]]></SourceCode>
   <Libraries>
     <Library Target="html"><![CDATA[ <script src="https://unpkg.com/jss@10.7.1/dist/jss.min.js"></script>]]></Library>
   </Libraries>
