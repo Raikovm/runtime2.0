@@ -14,7 +14,7 @@
     <Container>1</Container>
     <Category>Form</Category>
     <Dynamic>0</Dynamic>
-    <Version>1.16.6201</Version>
+    <Version>1.17.6201</Version>
     <InterfaceType>3</InterfaceType>
     <OptimizationPriority>1</OptimizationPriority>
     <Containers>form, password, dialog_2, container</Containers>
@@ -797,7 +797,7 @@ class FormButtonFactory(ComponentFactoryBase):
         builder.add_attribute("value", self.object.label)
         builder.add_attribute("name", self.object.name)
         
-        self._set_visibility(builder, self.object.visible == '0')
+        self._set_visibility(builder, self.object.visible == '1')
         self._set_position(builder, self.object.top, self.object.left)
         self._set_zindex(builder, self.object.zindex)
         self._set_size(builder, self.object.width, self.object.height)
@@ -825,7 +825,7 @@ class HtmlElement(object):
                       "let styles = {{{0} : {{{1}}}}};"
                       "{2}" 
                       "let sheet = jss.default.createStyleSheet(styles).attach();"
-                      "let element = document.currentScript.parentElement;"
+                      "let element = document.getElementsByTagName('input')[0];"
                       "element.classList.add(sheet.classes.{0});"
                       "}};"
                       "</script>").format(self.class_name, jss, css_merge_script)
