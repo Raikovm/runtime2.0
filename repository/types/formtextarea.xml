@@ -174,11 +174,11 @@
       <DisplayName>#Lang(114)</DisplayName>
       <DefaultValue>0</DefaultValue>
       <Visible>1</Visible>
-      <Help>#Lang(314)</Help>
+      <Help>#Lang(214)</Help>
       <InterfaceType>0</InterfaceType>
       <CodeInterface>DropDown((#Lang(407)|0)|(#Lang(408)|1))</CodeInterface>
       <Colorgroup>1</Colorgroup>
-      <ErrorValidationMessage>#Lang(214)</ErrorValidationMessage>
+      <ErrorValidationMessage>#Lang(314)</ErrorValidationMessage>
       <RegularExpressionValidation>^[01]$</RegularExpressionValidation>
     </Attribute>
   </Attributes>
@@ -212,7 +212,7 @@
       <Sentence ID="211">Index number of switching the elements on pressing the tab key</Sentence>
       <Sentence ID="212">custom name for input</Sentence>
       <Sentence ID="213">Define if the focus is set there after rendering the page or not</Sentence>
-      <Sentence ID="214">Incorrect value, must be either 0 or 1</Sentence>
+      <Sentence ID="214">When present, it specifies that field must be filled out before submitting the form</Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Incorrect value, must be even integer from 0 to 99</Sentence>
       <Sentence ID="303">Incorrect value, must be either 0 or 1</Sentence>
@@ -225,7 +225,7 @@
       <Sentence ID="311">Incorrect value, must be even positive integer</Sentence>
       <Sentence ID="312">invalid custom name for input</Sentence>
       <Sentence ID="313">Incorrect value, must be either 0 or 1</Sentence>
-      <Sentence ID="314">When present, it specifies that field must be filled out before submitting the form</Sentence>
+      <Sentence ID="314">Incorrect value, must be either 0 or 1</Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
@@ -328,7 +328,7 @@
       <Sentence ID="211">Tab index</Sentence>
       <Sentence ID="212"></Sentence>
       <Sentence ID="213">Define if the focus is set there after rendering the page or not</Sentence>
-      <Sentence ID="214">Valeur incorrecte, doit être 0 ou 1</Sentence>
+      <Sentence ID="214">Lorsqu'il est présent, il précise que le champ doit être rempli avant de soumettre le formulaire</Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="303">Valeur Incorrecte, doit être 0 ou 1</Sentence>
@@ -341,7 +341,7 @@
       <Sentence ID="311">Valeur Incorrecte, doit être positive</Sentence>
       <Sentence ID="312"></Sentence>
       <Sentence ID="313">Incorrect value, must be either 0 or 1</Sentence>
-      <Sentence ID="314">Lorsqu'il est présent, il précise que le champ doit être rempli avant de soumettre le formulaire</Sentence>
+      <Sentence ID="314">Valeur incorrecte, doit être 0 ou 1</Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Invisible</Sentence>
@@ -444,7 +444,7 @@
       <Sentence ID="211">Tab индекс объекта на странице</Sentence>
       <Sentence ID="212"></Sentence>
       <Sentence ID="213">Define if the focus is set there after rendering the page or not</Sentence>
-      <Sentence ID="214">Неправильное значение: допустимы цифры 0 и 1</Sentence>
+      <Sentence ID="214">Когда он присутствует, он указывает, что поле ввода должно быть заполнено перед отправкой формы</Sentence>
       <Sentence ID="301"></Sentence>
       <Sentence ID="302">Неправильное значение, должно быть указано целое число от 0 до 99</Sentence>
       <Sentence ID="303">Неправильное значение, должен быть указан 0 или 1</Sentence>
@@ -457,7 +457,7 @@
       <Sentence ID="311">Неправильное значение, должно быть указано целое положительное число</Sentence>
       <Sentence ID="312"></Sentence>
       <Sentence ID="313">Incorrect value, must be either 0 or 1</Sentence>
-      <Sentence ID="314">Когда он присутствует, он указывает, что поле ввода должно быть заполнено перед отправкой формы</Sentence>
+      <Sentence ID="314">Неправильное значение: допустимы цифры 0 и 1</Sentence>
       <Sentence ID="401"></Sentence>
       <Sentence ID="402"></Sentence>
       <Sentence ID="403">Не отображать</Sentence>
@@ -659,67 +659,178 @@
 			pl+lPsDB50nJFglTOuWvLU3+2jKKBAlkmHEwDhKJROAnFm52UK/DpqChUAj/Ao7pSLvHckUwAAAA
 			AElFTkSuQmCC]]></Resource>
   </Resources>
-  <SourceCode><![CDATA[
+  <SourceCode><![CDATA[class ComponentFactoryBase(object):
+    def create(self):
+        raise NotImplementedError("Derived classes must implement create() method.")
+
+    def _set_position(self, builder, top, left):
+        builder.add_style("position", "absolute")
+        builder.add_style("top", "%spx" % top)
+        builder.add_style("left", "%spx" % left)
+
+
+    def _set_visibility(self, builder, visibility):
+        if not visibility: 
+            builder.add_style("display", "none")
+        else: 
+            builder.add_style("display", "initial")
+
+
+    def _set_zindex(self, builder, index):
+        builder.add_style("z-index", index)
+
+
+    def _set_size(self, builder, width, height):
+        builder.add_style("width", "%spx" % width)
+        builder.add_style("height", "%spx" % height)
+
+
+    def _set_font(self, builder, size, family, is_bold, is_italic):
+        font = [
+                "%spx" % size or "12px",
+                "%s" % family or "",                
+                "bold" if is_bold else "",
+                "italic" if is_italic else ""]
+        builder.add_style("font", " ".join(font))
+
+class HtmlElement(object):
+    def __init__(self, tag, jss, css, children, class_name, html_attributes):
+        self.tag = tag
+        self.jss = jss
+        self.css = css
+        self.children = children
+        self.class_name = class_name
+        self.html_attributes = html_attributes
+
+    def render(self):
+        jss = ", ".join("'{}': '{}'".format(k, v) for k, v in self.jss.items())
+        children = "".join(str(child) for child in self.children)
+        class_name = self.class_name if self.class_name is '' else 'textarea'
+        attributes = " ".join("{}=\"{}\"".format(k, v) for k, v in self.html_attributes.items())
+        jss_script = ("<script>"
+                      "{{"
+                      "let styles = {{{0} : {{{1}}}}};"
+                      "let sheet = jss.default.createStyleSheet(styles).attach();"
+                      "let element = document.getElementsByClassName('{0}')[0];"
+                      "element.classList.add(sheet.classes.{0});"
+                      "}};"
+                      "</script>").format(class_name, jss)
+        return "<{0} class=\"{1}\" {2}>{4}</{0}>{3}".format(self.tag, class_name, attributes, jss_script, children)
+
+    def __str__(self):
+        return self.render()
+
+
+class FormTextAreaFactory(ComponentFactoryBase):
+    def __init__(self, VDOM_formtextarea):
+        self.object = VDOM_formtextarea
+
+    def create(self):
+        builder = HtmlBuilder()
+
+        id = 'o_' + (self.object.id).replace('-', '_')
+        builder.with_tag('textarea')
+        builder.add_attribute('id', id)
+        builder.add_attribute('name', self.object.customname or self.object.name)
+        builder.add_attribute('tabindex', self.object.tabindex)
+        if self.object.required == '1':
+            builder.add_attribute('required', None)
+
+        self._set_position(builder, self.object.top, self.object.left)
+        self._set_visibility(builder, self.object.visible == '1')
+        self._set_zindex(builder, self.object.zindex)
+        self._set_size(builder, self.object.width, self.object.height)
+        self._set_font(builder, 14, "tahoma", False, False)
+
+        builder.add_children_element(self.object.value)
+        builder.add_css('padding: 2px 5px 2px 5px')
+
+        return builder.build().render()
+
+
+class HtmlBuilder(object):
+    def __init__(self):
+        self._element = HtmlElement(None, {}, None, [], None, {})
+
+
+    def add_style(self, style, value):
+        if value is not None:
+            self._element.jss[style] = value
+        return self
+
+
+    def with_tag(self, tag_name):
+        self._element.tag = tag_name
+        return self
+
+
+    def add_children_element(self, child_element):
+        self._element.children.append(child_element)
+        return self
+
+
+    def with_class_name(self, class_name):
+        self._element.class_name = class_name
+        return self
+
+
+    def add_css(self, text):
+        self._element.css = text
+        return self
+
+    def add_attribute(self, attribute, value):
+        if value is not None:
+            self._element.html_attributes[attribute] = value 
+        elif attribute in self._element.html_attributes: 
+            del self._element.html_attributes[attribute] 
+        return self
+
+
+    def build(self):
+        return self._element
+
 class VDOM_formtextarea(VDOM_object):
+    def render(self, contents=""):
+        form_text_area_factory = FormTextAreaFactory(self)
+        result = form_text_area_factory.create()
 
-	def render(self, contents=""):
-		display = u"display:none;" if self.visible == "0" else u""
-		clean_id = (self.id).replace('-', '_')
-		id = u"o_" + (self.id).replace('-', '_')
-		required = 'required' if self.required=='1' else u''
-		
-		style = u"""z-index: {zind}; position: {pos}; top: {top}px; left: {left}px;
-					width: {width}px; height: {height}px; padding: 2px 5px 2px 5px; {display} font: 14px tahoma
-				""".format(zind = self.zindex, pos = self.position, top = self.top, left = self.left, 
-						width = self.width, height = self.height, display = display)
+        clean_id = (self.id).replace('-', '_')
+        id = 'o_' + (self.id).replace('-', '_')
+        focused = u"$q('#%s').focus();" % id if self.focused == "1" else ""
 
-		result = u"""
-			<textarea {required} id="{id}" name="{name}" 
-				tabindex="{tabind}" style="{style}"
-			>{value}</textarea>
-		""".format(
-			id=id, name=self.customname or self.name, 
-			tabind=self.tabindex, style=style, 
-			value=self.value, required=required
-		)
-		
-		focused = u"$q('#%s').focus();" % id if self.focused == "1" else ""
-				
-		result += u"""<script type='text/javascript'>
+        result += u"""<script type='text/javascript'>
 $(document).ready(function(){
-	$('#%(id)s').blur(function(){
-		var x = $.trim($(this).val());
-		execEventBinded("%(clean_id)s", "blur", { itemValue: x, charCount: x.length });
-	});
-	$('#%(id)s').focusin(function(){
-		execEventBinded("%(clean_id)s", "focus", {});
-	});
-	%(focused)s
-});</script>""" % { "id": id, "clean_id": clean_id, "focused": focused }
+    $('#%(id)s').blur(function(){
+        var x = $.trim($(this).val());
+        execEventBinded("%(clean_id)s", "blur", { itemValue: x, charCount: x.length });
+    });
+    $('#%(id)s').focusin(function(){
+        execEventBinded("%(clean_id)s", "focus", {});
+    });
+    %(focused)s
+});</script>""" % {"id": id, "clean_id": clean_id, "focused": focused}
 
-		return VDOM_object.render(self, contents=result)
+        return VDOM_object.render(self, contents=result)
 
-	def wysiwyg(self, contents=""):
-		
-		result = \
-			u"""<container name="{name}" id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}" 
-						top="{top}" left="{left}" width="{width}" height="{height}" >
-					<htmltext top="0" left="0" width="{width}" height="{height}" overflow="hidden" blendMode="normal">
-						<textarea style="width: {width}px; height: {height}px; background-color:#ffffff; font: 14px tahoma; padding: 2px 5px;">
-							{value}
-						</textarea>
-					</htmltext>
-				</container>
-			""".format(
-					id = self.id, vis = self.visible, zind = self.zindex, 
-					hierarchy = self.hierarchy, order = self.order, 
-					top = self.top, left = self.left, name = self.name,
-					width = self.width, height = self.height,
-					value = self.value)
-		
-		return VDOM_object.wysiwyg(self, contents=result)
-		
-]]></SourceCode>
+    def wysiwyg(self, contents=""):
+        
+        result = \
+            u"""<container name="{name}" id="{id}" visible="{vis}" zindex="{zind}" hierarchy="{hierarchy}" order="{order}" 
+                        top="{top}" left="{left}" width="{width}" height="{height}" >
+                    <htmltext top="0" left="0" width="{width}" height="{height}" overflow="hidden" blendMode="normal">
+                        <textarea style="width: {width}px; height: {height}px; background-color:#ffffff; font: 14px tahoma; padding: 2px 5px;">
+                            {value}
+                        </textarea>
+                    </htmltext>
+                </container>
+            """.format(
+                    id = self.id, vis = self.visible, zind = self.zindex, 
+                    hierarchy = self.hierarchy, order = self.order, 
+                    top = self.top, left = self.left, name = self.name,
+                    width = self.width, height = self.height,
+                    value = self.value)
+        
+        return VDOM_object.wysiwyg(self, contents=result)]]></SourceCode>
   <Libraries/>
   <E2vdom>
     <Events>
@@ -781,39 +892,17 @@ $(document).ready(function(){
     </Events>
     <Actions>
       <Container ID="2330fe83-8cd6-4ed5-907d-11874e7ebcf4">
-        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
-          <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[vdom_ui_hide(this.domCont, fade);]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="show">
-          <Parameters>
-            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[vdom_ui_show(this.domCont, fade);]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="removeClass">
-          <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(703)" ScriptName="className" Help="#Lang(803)" RegularExpressionValidation=".*"/>
-          </Parameters>
-          <SourceCode><![CDATA[$q(this.domCont).removeClass(className);]]></SourceCode>
-        </Action>
         <Action Help="#Lang(504)" InterfaceName="#Lang(604)" MethodName="addClass">
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(704)" ScriptName="className" Help="#Lang(804)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[$q(this.domCont).addClass(className);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="setFocus">
-          <Parameters/>
-          <SourceCode><![CDATA[jQuery(this.domCont).focus();]]></SourceCode>
-        </Action>
-        <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="setValue">
+        <Action Help="#Lang(501)" InterfaceName="#Lang(601)" MethodName="hide">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(705)" ScriptName="value" Help="#Lang(805)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(701)" ScriptName="fade" Help="#Lang(801)" RegularExpressionValidation=".*"/>
           </Parameters>
-          <SourceCode><![CDATA[jQuery(this.domCont).val(value);]]></SourceCode>
+          <SourceCode><![CDATA[vdom_ui_hide(this.domCont, fade);]]></SourceCode>
         </Action>
         <Action Help="#Lang(507)" InterfaceName="#Lang(607)" MethodName="moveTo">
           <Parameters>
@@ -823,17 +912,39 @@ $(document).ready(function(){
           </Parameters>
           <SourceCode><![CDATA[vdom_ui_moveTo(this.domCont, newX, newY, Effect);]]></SourceCode>
         </Action>
-        <Action Help="#Lang(508)" InterfaceName="#Lang(608)" MethodName="setStyle">
+        <Action Help="#Lang(503)" InterfaceName="#Lang(603)" MethodName="removeClass">
           <Parameters>
-            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(709)" ScriptName="cssStyleValue" Help="#Lang(809)" RegularExpressionValidation=".*"/>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(703)" ScriptName="className" Help="#Lang(803)" RegularExpressionValidation=".*"/>
           </Parameters>
-          <SourceCode><![CDATA[jQuery(this).attr('style', cssStyleValue);]]></SourceCode>
+          <SourceCode><![CDATA[$q(this.domCont).removeClass(className);]]></SourceCode>
         </Action>
         <Action Help="#Lang(509)" InterfaceName="#Lang(609)" MethodName="setClass">
           <Parameters>
             <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(711)" ScriptName="className" Help="#Lang(811)" RegularExpressionValidation=".*"/>
           </Parameters>
           <SourceCode><![CDATA[$q(this.domCont).attr('class',className);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(505)" InterfaceName="#Lang(605)" MethodName="setFocus">
+          <Parameters/>
+          <SourceCode><![CDATA[jQuery(this.domCont).focus();]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(508)" InterfaceName="#Lang(608)" MethodName="setStyle">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(709)" ScriptName="cssStyleValue" Help="#Lang(809)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[jQuery(this).attr('style', cssStyleValue);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(506)" InterfaceName="#Lang(606)" MethodName="setValue">
+          <Parameters>
+            <Parameter DefaultValue="" Interface="" InterfaceName="#Lang(705)" ScriptName="value" Help="#Lang(805)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[jQuery(this.domCont).val(value);]]></SourceCode>
+        </Action>
+        <Action Help="#Lang(502)" InterfaceName="#Lang(602)" MethodName="show">
+          <Parameters>
+            <Parameter DefaultValue="0" Interface="" InterfaceName="#Lang(702)" ScriptName="fade" Help="#Lang(802)" RegularExpressionValidation=".*"/>
+          </Parameters>
+          <SourceCode><![CDATA[vdom_ui_show(this.domCont, fade);]]></SourceCode>
         </Action>
       </Container>
     </Actions>

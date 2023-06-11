@@ -1,4 +1,4 @@
-from utils import HtmlElement, HtmlBuilder
+from utils import HtmlElement, HtmlBuilder, ComponentFactoryBase
 from text_factory import TextFactory
 from hypertext_factory import HyperTextFactory
 from richtext_factory import RichTextFactory
